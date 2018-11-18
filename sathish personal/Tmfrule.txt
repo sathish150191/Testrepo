@@ -1,0 +1,63 @@
+import com.majescomastek.stgicd.rating.dom.BOPLocation;
+ 
+function boolean tmfRule(BOPLocation bopLocation,String county,String zipcode)
+{
+   if(bopLocation!=null)
+   {
+      String bopCounty=bopLocation.getCounty(); //MARICOP
+      String bopZipCode=bopLocation.getZipCode();//12345
+                  
+                  if( county !=null && zipcode !=null)
+                  {
+                                if(county.equalsIgnoreCase("All") && zipcode.equalsIgnoreCase("All"))
+                                {
+                                                return true;
+                                }
+                                else if(county.equalsIgnoreCase(bopCounty) && zipcode.equalsIgnoreCase("All"))
+                                {
+                                                return true;
+                                }
+                                else if(county.equalsIgnoreCase("All") && zipcode.equalsIgnoreCase(bopZipCode))
+                                {
+                                                return true;
+                                }
+                                else if(county.equalsIgnoreCase(bopCounty) && zipcode.equalsIgnoreCase(bopZipCode))
+                                {
+                                                return true;
+                                }
+								else if(county.equalsIgnoreCase(bopCounty) && zipcode.contains("All except"))
+							    {
+								       String[] zipCodes = zipcode.substring(9,zipcode.length()).split(",");
+									   for (String zipCodeVal : zipCodes) {
+									    
+										if(county.equalsIgnoreCase("All except") && bopZipCode.equals(zipCodeVal))
+											{
+											   return false;
+											}
+											else if(county.equalsIgnoreCase(bopCounty) && bopZipCode.equals(zipCodeVal))
+											{
+											
+											return true;
+											}
+											else if(county.equalsIgnoreCase("All except") && bopZipCode.equals("All except"))
+											{
+											
+											return false;
+											}
+											else if(county.equalsIgnoreCase("All") && bopZipCode.equals("All except"))
+											{
+											
+											return false;
+											}
+															  
+							    }
+                                
+                  }
+                  
+                  
+                }
+                
+                return false;
+                  
+                  
+}
