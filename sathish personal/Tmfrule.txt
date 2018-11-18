@@ -2,7 +2,7 @@ import com.majescomastek.stgicd.rating.dom.BOPLocation;
  
 function boolean tmfRule(BOPLocation bopLocation,String county,String zipcode)
 {
-   if(bopLocation!=null)
+   if(bopLocation!=null) jdjdn
    {
       String bopCounty=bopLocation.getCounty(); //MARICOP
       String bopZipCode=bopLocation.getZipCode();//12345
